@@ -46,6 +46,13 @@ class User_Watch_History(db.Model):
     watch_date = db.Column(db.Date)
     favorite = db.Column(db.Boolean)
 
+@app.after_request
+def add_cors_headers(response):
+    response.headers["Access-Control-Allow-Origin"] = "https://wanade01.github.io"
+    response.headers["Access-Control-Allow-Methods"] = "GET, POST, OPTIONS"
+    response.headers["Access-Control-Allow-Headers"] = "Content-Type, Authorization"
+    return response
+
 #Adds user based on the logged in user_id to db. If a user already exists, then
 #a message is given that the user_id already exists.
 @app.route('/add-user', methods=['POST'])
