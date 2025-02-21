@@ -31,13 +31,13 @@ def add_cors_headers(response):
     return response
     
 search.app_context()
-@search.route('/search', methods=['GET'])
+@search.route('/search', methods=['GET','OPTIONS'])
 def search_movies():
     query = request.args.get('query')
     response = requests.get(f'https://api.themoviedb.org/3/search/movie?api_key={TMDB_API_KEY}&query={query}')
     return jsonify(response.json())
 
-@search.route('/movie', methods=['GET'])
+@search.route('/movie', methods=['GET','OPTIONS'])
 def getMovie():
     movie_id = request.args.get('id')
     response = requests.get(f'https://api.themoviedb.org/3/movie/{movie_id}?api_key={TMDB_API_KEY}')
@@ -58,77 +58,77 @@ def getUser():
     print(response)
     return response
 
-@search.route('/setUser', methods=['POST'])
+@search.route('/setUser', methods=['POST','OPTIONS'])
 def setUser():
     print("Set user being accessed\n")
     response = set_user()
     print(response)
     return response
 
-@search.route('/addRating', methods=['POST'])
+@search.route('/addRating', methods=['POST','OPTIONS'])
 def addRating():
     print("Add Rating being accessed\n")
     response = add_rating()
     print(response)
     return response
 
-@search.route('/addReview', methods=['POST'])
+@search.route('/addReview', methods=['POST','OPTIONS'])
 def addReview():
     print("Add Review being accessed\n")
     response = add_review()
     print(response)
     return response
 
-@search.route('/getRating', methods=['POST'])
+@search.route('/getRating', methods=['POST','OPTIONS'])
 def getRating():
     print("Get Rating being accessed\n")
     response = get_rating()
     print(response)
     return response
 
-@search.route('/getReview', methods=['POST'])
+@search.route('/getReview', methods=['POST','OPTIONS'])
 def getReview():
     print("Get Review being accessed\n")
     response = get_review()
     print(response)
     return response
 
-@search.route('/getGenre', methods=['POST'])
+@search.route('/getGenre', methods=['POST','OPTIONS'])
 def getGenre():
     print("Get Genre being accessed\n")
     response = get_genres()
     print(response)
     return response
 
-@search.route('/setGenre', methods=['POST'])
+@search.route('/setGenre', methods=['POST','OPTIONS'])
 def setGenre():
     print("Set Genre being accessed\n")
     response = add_genres()
     print(response)
     return response
 
-@search.route('/addWatchHistory', methods=['POST'])
+@search.route('/addWatchHistory', methods=['POST','OPTIONS'])
 def addWatchHistory():
     print("Add Watch History being accessed\n")
     response = add_watch_history()
     print(response)
     return response
 
-@search.route('/getWatchHistory', methods=['POST'])
+@search.route('/getWatchHistory', methods=['POST','OPTIONS'])
 def getWatchHistory():
     print("Get Watch History being accessed\n")
     response = get_watch_history()
     print(response)
     return response
 
-@search.route('/updateFavorite', methods=['POST'])
+@search.route('/updateFavorite', methods=['POST','OPTIONS'])
 def updateFavorite():
     print("Updating favorite status\n")
     response = update_favorite()
     print(response)
     return response
 
-@search.route('/hasWatchHistory', methods=['POST'])
+@search.route('/hasWatchHistory', methods=['POST','OPTIONS'])
 def hasWatchHistory():
     print("Entering Watch History Exists function")
     response = watchHistoryExists()
@@ -161,7 +161,7 @@ def get_recommendations(imdb_id, count=5):
 
     return imdb_ids[random.randint(0,count-1)]
 
-@search.route('/recMovie', methods=['POST'])
+@search.route('/recMovie', methods=['POST','OPTIONS'])
 def findRecMovie():
     print("Finding Recommended Movie\n\n")
     
