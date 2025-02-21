@@ -16,7 +16,7 @@ load_dotenv()
 TMDB_API_KEY = os.getenv('TMDB_API_KEY')
 
 search = Flask(__name__)
-CORS(search)
+CORS(search, resources={r"/*": {"origins": "*.github.io"}})
 """ CORS(search, resources={r"/search/*": {"origins": "http://localhost:4200"}}) 
 CORS(search, resources={r"/movie/*": {"origins": "http://localhost:4200"}})
 CORS(search, resources={r"/addUser": {"origins": "http://localhost:4200"}}) 
