@@ -55,7 +55,7 @@ def add_cors_headers(response):
 
 #Adds user based on the logged in user_id to db. If a user already exists, then
 #a message is given that the user_id already exists.
-@app.route('/add-user', methods=['POST'])
+@app.route('/add-user', methods=['POST', 'OPTIONS'])
 def add_user():
     print("Add User DB being accessed.")
     data = request.data
@@ -81,7 +81,7 @@ def add_user():
     
             return jsonify({"status": "success", "userId": userId}), 200
         
-@app.route('/get-user', methods=['POST'])
+@app.route('/get-user', methods=['POST', 'OPTIONS'])
 def get_user():
     print("Get User DB being accessed.")
     data = request.get_data()
@@ -92,7 +92,7 @@ def get_user():
     
     return jsonify({"user_id": user_id, "firsttimesetup": q}), 200
 
-@app.route('/set-user', methods=['POST'])
+@app.route('/set-user', methods=['POST', 'OPTIONS'])
 def set_user():
     print("Set User DB being accessed.")
     data = request.get_json()
@@ -112,7 +112,7 @@ def set_user():
 
 #Adds rating for movie based on user_id and movie_id to db. If a rating already exists, then
 #the rating gets updated.
-@app.route('/add-rating', methods=['POST'])
+@app.route('/add-rating', methods=['POST', 'OPTIONS'])
 def add_rating():
     print("Add Rating DB being accessed.")
     data = request.get_json()
@@ -142,7 +142,7 @@ def add_rating():
     return jsonify({"status": "success", "movie_rating": user_rating}), 200
 
 #Gets rating based on user_id and movie_id in User_Reviews table.
-@app.route('/get-rating', methods=['POST'])
+@app.route('/get-rating', methods=['POST', 'OPTIONS'])
 def get_rating():
     print("Get Rating DB being accessed.")
     data = request.get_json()
@@ -163,7 +163,7 @@ def get_rating():
 
 #Adds Review based on user_id and movie_id to db. If a review already exists, then
 #the review gets updated.
-@app.route('/add-review', methods=['POST'])
+@app.route('/add-review', methods=['POST', 'OPTIONS'])
 def add_review():
     print("Add Rating DB being accessed.")
     data = request.get_json()
@@ -192,7 +192,7 @@ def add_review():
     return jsonify({"status": "success", "movie_review": user_review}), 200
 
 #Gets review based on user_id and movie_id in User_Reviews table.
-@app.route('/get-review', methods=['POST'])
+@app.route('/get-review', methods=['POST', 'OPTIONS'])
 def get_review():
     print("Get Review DB being accessed.")
     data = request.get_json()
@@ -229,7 +229,7 @@ def add_genres():
     
     return jsonify({"status": "success", "genres": gen_array}), 200
 
-@app.route('/get-genres', methods=['POST'])
+@app.route('/get-genres', methods=['POST', 'OPTIONS'])
 def get_genres():
     genIdArray = ["28","35","10749","27","878","12","16","80","99","18","10751","14","36","10402","9648","10770","53","10752","37"]
     print("Get Genres DB being accessed.")
@@ -253,7 +253,7 @@ def get_genres():
     return jsonify({"userGenres": gen_array}), 200
 
 #Adds movie to watch history based on user_id and movie_id
-@app.route('/add-watch-history', methods=['POST'])
+@app.route('/add-watch-history', methods=['POST', 'OPTIONS'])
 def add_watch_history():
     print("Add Watch History DB being accessed.")
     data = request.get_json()
@@ -281,7 +281,7 @@ def add_watch_history():
 
         return jsonify({"status": "success", "watch_date": watch_date}), 200
 
-@app.route('/get-watch-history', methods=['POST'])
+@app.route('/get-watch-history', methods=['POST', 'OPTIONS'])
 def get_watch_history():
     print("Fetching watch history from the database.")
     data = request.get_json()
@@ -303,7 +303,7 @@ def get_watch_history():
 #Checks if a Watch History entry exists based on a specific user and movie. If it does,
 #return a 1 (True) or 0 (False). This will be used to change the icon on the Movie Info page depending if the user
 #has seen the movie or not.
-@app.route('/watchHistoryExists', methods=['POST'])
+@app.route('/watchHistoryExists', methods=['POST', 'OPTIONS'])
 def watchHistoryExists():
     print("Watch History DB being accessed to see if History.")
     data = request.get_json()
@@ -326,7 +326,7 @@ def watchHistoryExists():
             return "0"
 
 
-@app.route('/updateFavorite', methods=['POST'])
+@app.route('/updateFavorite', methods=['POST', 'OPTIONS'])
 def update_favorite():
     data = request.get_json()
     user_id = data.get('user_id')
