@@ -10,7 +10,7 @@ from sqlalchemy.sql.expression import func
 
 app = Flask(__name__)
 app.debug = True
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "*.github.io"}})
 
 #adds config for using a MySQL DB
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://admin:5PTjjJBDcpLt4PFuacku@popcornpicks.czkyuwkeqdlw.us-west-1.rds.amazonaws.com:3306/popcornpicksdb'
