@@ -1,3 +1,6 @@
+from gevent import monkey  
+monkey.patch_all()  # ✅ Apply monkey-patching FIRST
+
 from flask import Flask, request, jsonify, render_template
 from flask_cors import CORS, cross_origin
 import os
